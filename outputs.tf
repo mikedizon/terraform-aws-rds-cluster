@@ -8,6 +8,13 @@ output "master_username" {
   description = "Username for the master DB user"
 }
 
+output "master_password" {
+  value       = local.admin_password
+  description = "Password for the master DB user"
+  sensitive   = true
+}
+
+
 output "cluster_identifier" {
   value       = local.is_regional_cluster ? join("", aws_rds_cluster.primary.*.cluster_identifier) : join("", aws_rds_cluster.secondary.*.cluster_identifier)
   description = "Cluster Identifier"
